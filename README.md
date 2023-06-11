@@ -1,6 +1,10 @@
 # Gestor Inventario
 CRUD prueba técnica pasantía
 
+## Documento técnico
+En este documento se describen los aspectos más importantes y el funcionamiento
+la aplicación.
+
 ## Instalación
 
 En la console de git coloque:
