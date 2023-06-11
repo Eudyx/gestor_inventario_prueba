@@ -1,4 +1,5 @@
-# gestor_inventario
+# Gestor Inventario
+CRUD prueba técnica pasantía
 
 ##Instalación
 
