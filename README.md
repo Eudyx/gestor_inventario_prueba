@@ -26,5 +26,5 @@ Para realizar la ejecución del proyecto debe utilizar el comando:
 npm run dev
 ~~~
 
-##Autor
+## Autor
 [Eudyx](https://github.com/Eudyx)
