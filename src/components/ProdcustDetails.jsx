@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CreateForm from './CreateForm';
 import EditButton from '../subComponents/EditButton';
 import DeleteButton from '../subComponents/DeleteButton';
 import axios from '../api/axios';
+import Search from './Search';
+import { Link } from 'react-router-dom';
 
-const ProdcustDetails = () => {
+const ProdcustDetails = ({ hidde, setHidde }) => {
 
     const [allProducts, setAllProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState();
+    const [data, setData] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
-    const [hidde, setHidde] = useState(true);
     const [toEdit, setToEdit] = useState(false);
     const [deleted, setDeleted] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     const getAllProducts = () => {
         axios.get('/ProductAll')
@@ -27,16 +31,24 @@ const ProdcustDetails = () => {
                     setErrorMsg('Solicitud fallida.')
                 }
             });
-    }
 
-    const openCreate = (e) => {
-        e.preventDefault();
-        setHidde(false);
-    }
-
+        }       
+        
     useEffect(() => {
-        getAllProducts();
+            getAllProducts();
     }, [hidde, deleted]);
+
+    // useEffect(() => {
+    //     setData(allProducts);
+    // }, [allProducts]);
+    
+    useEffect(() => {
+        console.log(allProducts);
+        // getAllProducts();
+        !filteredProducts?.length ? 
+        setData(allProducts) : setData(filteredProducts); 
+        
+    }, [allProducts, data, filteredProducts]);
 
     useEffect(() => {
         errorMsg !== '' ? alert(errorMsg) : null;
@@ -44,11 +56,20 @@ const ProdcustDetails = () => {
 
   return (
 <section >
-    <button className='btn' onClick={(e) => openCreate(e)}>Crear</button>
+    {/* <button className='btn' onClick={(e) => openCreate(e)}>Crear</button> */}
+    <Search
+        allProducts={allProducts}
+        searchText={searchText}
+        setSearchText={setSearchText}
+        setFilteredProducts={setFilteredProducts}
+    />
+    
+    <br/>
     <div className='table-container'>
     <table>
         <thead>
             <tr className='table-head'>
+            <th>info</th>
             <th>Nombre</th>
             <th>Categoría</th>
             <th>Precio</th>
@@ -56,8 +77,9 @@ const ProdcustDetails = () => {
             </tr>
         </thead>
         <tbody>
-            {allProducts && allProducts.map(product => 
+            {data && data.map(product => 
             <tr key={product.id}>
+                <td><Link to={`/details/${product.id}`} className='router-link' ><FontAwesomeIcon className='info-icon' icon={faCircleInfo} /></Link></td>
                 <td>{product.name}</td>
                 <td>{product.category}</td>
                 <td>{product.price}</td>
@@ -68,7 +90,7 @@ const ProdcustDetails = () => {
                         setHidde={setHidde}
                         setToEdit={setToEdit}
                         productId={product.id}
-                    >
+                        >
                         {<FontAwesomeIcon icon={faPenToSquare} />}
                     </EditButton>
                 </td>

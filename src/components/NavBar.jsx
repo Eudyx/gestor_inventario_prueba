@@ -1,13 +1,19 @@
-import { faHouse, faList } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faList, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const NavBar = () => {
-
+const NavBar = ({ setHidde }) => {
+ 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigate = (route) => {
     navigate(route);
+  }
+
+  const openCreate = (e) => {
+    e.preventDefault();
+    setHidde(false);
   }
 
   return (
@@ -20,6 +26,7 @@ const NavBar = () => {
         e.preventDefault();
         handleNavigate('/products');
       }} />
+      {location.pathname === '/products' && <button className='btn btn-create' onClick={(e) => openCreate(e)}><FontAwesomeIcon icon={faPlus} /></button>}
     </nav>
   )
 }

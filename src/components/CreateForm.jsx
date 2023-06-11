@@ -2,7 +2,6 @@ import axios from "../api/axios";
 import { useForm } from "react-hook-form";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useProduct } from "../hooks/useProduct";
 import { useEffect } from "react";
 import useData from "../hooks/useData";
 
@@ -102,7 +101,7 @@ useEffect(() => {
 
   return (
     <div className='form' style={styles}>
-        <form onSubmit={handleSubmit((data) => {
+        <form id="form-crate" onSubmit={handleSubmit((data) => {
           !toEdit ?
           handleCreate(data) : handleEdit(data);
         })}>
