@@ -9,8 +9,13 @@ En la console de git coloque:
 git clone https://github.com/Eudyx/gestor_inventario_prueba.git
 ~~~
 
-Luego, debe acceder a la carpeta en la consola ejecutar el siguiente comando:
+Luego, debe acceder a la carpeta en la consola e instalar las dependencias:
 
+Ingresar al directorio:
+~~~
+cd gestor_inventario_prueba
+~~~
+Instalar las dependecias:
 ~~~
 npm install
 ~~~
