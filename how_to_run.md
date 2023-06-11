@@ -1,7 +1,7 @@
 # Gestor Inventario
 CRUD prueba técnica pasantía
 
-##Instalación
+## Instalación
 
 En la console de git coloque:
 
