@@ -1,7 +1,11 @@
 import { faPenToSquare, faCircleInfo, faList, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from 'react-router-dom';
 
 const Presentation = () => {
+
+    const navigate = useNavigate();
+
   return (
     <section className='presentation'>
         <div className='pres-info'>
@@ -32,7 +36,10 @@ const Presentation = () => {
         </div>
         
         <div className='pres-button-container'>
-            <div className='pres-button'>
+            <div className='pres-button' onClick={(e) => {
+                e.preventDefault();
+                navigate('/products');
+            }}>
                 <div className='btn-icon-container'>
                     <FontAwesomeIcon className='pres-icon' icon={faList} />
                 </div>

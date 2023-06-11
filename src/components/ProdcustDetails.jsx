@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useState } from 'react';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CreateForm from './CreateForm';
+import EditButton from '../subComponents/EditButton';
+import DeleteButton from '../subComponents/DeleteButton';
 import axios from '../api/axios';
 
 const ProdcustDetails = () => {
@@ -9,6 +11,8 @@ const ProdcustDetails = () => {
     const [allProducts, setAllProducts] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
     const [hidde, setHidde] = useState(true);
+    const [toEdit, setToEdit] = useState(false);
+    const [deleted, setDeleted] = useState(false);
 
     const getAllProducts = () => {
         axios.get('/ProductAll')
@@ -32,7 +36,7 @@ const ProdcustDetails = () => {
 
     useEffect(() => {
         getAllProducts();
-    }, []);
+    }, [hidde, deleted]);
 
     useEffect(() => {
         errorMsg !== '' ? alert(errorMsg) : null;
@@ -58,14 +62,29 @@ const ProdcustDetails = () => {
                 <td>{product.category}</td>
                 <td>{product.price}</td>
                 <td>{product.stock}</td>
-                <td><button className='btn btn-sm'>{<FontAwesomeIcon icon={faPenToSquare} />}</button></td>
-                <td><button className='btn btn-sm'>{<FontAwesomeIcon icon={faTrash} />}</button></td>
+                <td>
+                    <EditButton 
+                        hidde={hidde}
+                        setHidde={setHidde}
+                        setToEdit={setToEdit}
+                        productId={product.id}
+                    >
+                        {<FontAwesomeIcon icon={faPenToSquare} />}
+                    </EditButton>
+                </td>
+                <td><DeleteButton productId={product.id} deleted={deleted} setDeleted={setDeleted} >{<FontAwesomeIcon icon={faTrash} />}</DeleteButton></td>
             </tr>)}
-            <br />
+            {/* <br /> */}
         </tbody>
     </table>
     </div>
-    <CreateForm hidde={hidde} setHidde={setHidde} setErrorMsg={setErrorMsg} />
+    <CreateForm
+        hidde={hidde}
+        setHidde={setHidde}
+        toEdit={toEdit}
+        setToEdit={setToEdit}
+        setErrorMsg={setErrorMsg}
+    />
 </section>
   )
 }
