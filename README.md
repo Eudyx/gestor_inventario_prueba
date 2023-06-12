@@ -2,6 +2,7 @@
 CRUD prueba técnica pasantía
 
 ## Documento técnico
+[Documento técnico](./technicalDocument.md)
 En este documento se describen los aspectos más importantes y el funcionamiento
 la aplicación.
 
