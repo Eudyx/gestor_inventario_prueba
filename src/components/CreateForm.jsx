@@ -8,11 +8,13 @@ import useData from "../hooks/useData";
 const CreateForm = ({ hidde, setHidde, toEdit, setToEdit, setErrorMsg,  }) => {
 
 const { register, handleSubmit, resetField, setValue } = useForm();
-const { item } = useData();
+const { item } = useData(); //context
+
 const styles = {
-  display: hidde ? 'none' : 'flex'
+  display: hidde ? 'none' : 'flex' //propertis to hidde or show the form
 }
 
+//creating a product
 const handleCreate = async (data) => {
   try {
         const result = await axios.post(
@@ -29,12 +31,11 @@ const handleCreate = async (data) => {
           }
         );
 
-      clearInputs()
-      setHidde(true);
+      clearInputs(); //clear the inputs
+      setHidde(true);//hidde the form
 
-      console.log(result);
   } catch (err) {
-    console.log(err);
+
       if(!err?.response){
           setErrorMsg('Sin respuesta del servidor')
       } else if(err.response.status === 404) {
@@ -45,10 +46,11 @@ const handleCreate = async (data) => {
   }
 }
 
+//to edit a product
 const handleEdit = async (data) => {
   try {
         const result = await axios.put(
-          `/Product/?id=${item.id}`,
+          `/Product/?id=${item.id}`,//here i used the context to provide the id of the product
           {
               name: data.name,
               description: data.description,
@@ -61,12 +63,9 @@ const handleEdit = async (data) => {
           }
         );
 
-      clearInputs();
-      setHidde(true);
-
-      console.log(result);
+      clearInputs();//clear the inputs
+      setHidde(true);//hidde the form
   } catch (err) {
-    console.log(err);
       if(!err?.response){
           setErrorMsg('Sin respuesta del servidor')
       } else if(err.response.status === 404) {
@@ -96,7 +95,7 @@ const fillInputs = () => {
 }
 
 useEffect(() => {
-  if(toEdit) fillInputs();
+  if(toEdit) fillInputs();//If we are in edit mode this function set de values
 },[toEdit]);
 
   return (
@@ -156,7 +155,7 @@ useEffect(() => {
             ></textarea>
 
             <button type="submit" className='btn btn-form'>Enviar</button>
-            
+            {/* A button to close the form */}
             <span className='close-form' onClick={(e) => {
               e.preventDefault();
               clearInputs();
@@ -165,6 +164,7 @@ useEffect(() => {
             }} >
             {<FontAwesomeIcon icon={faXmark} style={{ width: '90px' }} />}
             </span>
+            {/* A button to close the form */}
         </form>
     </div>
   )

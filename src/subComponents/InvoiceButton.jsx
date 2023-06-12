@@ -1,5 +1,5 @@
 
-const InvoiceButton = ({ setHidde }) => {
+const InvoiceButton = ({ setHidde, quantity }) => {
 
   return (
     <button className='btn' onClick={(e) => {

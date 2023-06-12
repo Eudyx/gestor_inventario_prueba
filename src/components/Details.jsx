@@ -7,22 +7,20 @@ import Invoice from '../subComponents/Invoice';
 const Details = () => {
 
     const [product, getProduct] = useProduct({});
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [hidde, setHidde] = useState(true);
     const { id } = useParams();
 
     useEffect(() => {
-        getProduct(id);
+        getProduct(id); //getting a product
     },[]);
 
-    useEffect(() => {
-        console.log(product);
-    },[product]);
   return (
     <section className='details-section'>
         <div className='details-container'>
             {product && 
             <>
+            {/* showing data */}
                 <h2 className='p-name'>{product.name}</h2>
                 <p className='detail-text'><span className='titles'>Categoría:&nbsp;&nbsp;</span>{product.category}</p>
                 <p className='detail-text'><span className='titles'>Stock:&nbsp;&nbsp;</span>{product.stock}</p>
@@ -33,11 +31,15 @@ const Details = () => {
                 <div className='price-container'>
                     <p className='detail-text'><span className='titles'>Precio:&nbsp;&nbsp;</span>${product.price}</p>
                 </div>
+            {/* showing data */}
             </>
             }
         </div>
         <br />
+        <p style={{ textAlign: 'center', fontWeight: '500' }}>Elija una cantidad</p>
+        <br />
         <div className='inputs-details-container'>
+            {/* setting a quantity to generate an invoice */}
             <input
                 placeholder='Cantidad: ej 10'
                 className='input invoice-input'
@@ -46,9 +48,15 @@ const Details = () => {
                 min="1"
                 pattern="^[0-9]+"
             />
-            <InvoiceButton setHidde={setHidde} />
+            {/* setting a quantity to generate an invoice */}
+
+            {/* button to show the invocie */}
+            <InvoiceButton setHidde={setHidde} quantity={quantity} />
+            {/* button to show the invocie */}
         </div>
+        {/* invoice */}
         <Invoice quantity={quantity} product={product} hidde={hidde} setHidde={setHidde} />
+        {/* invoice */}
     </section>
   )
 }

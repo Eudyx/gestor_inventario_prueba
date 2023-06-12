@@ -4,6 +4,7 @@ import axios from "../api/axios";
 export const useProduct = () => {
     const [product, setProduct] = useState({});
 
+    // getting a single product
     const getProduct = (id) => {
         axios.get(`/ProductId/?id=${id}`)
             .then(res => setProduct(res.data))

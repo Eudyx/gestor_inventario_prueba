@@ -7,6 +7,7 @@ const Invoice = ({ quantity, product, hidde, setHidde }) => {
         display: hidde ? 'none' : 'flex'
       }
 
+    // calculating values   
       const price = Number(product.price) * Number(quantity);
       const itbis = price * 0.18;
       const price1 = price - itbis;

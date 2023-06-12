@@ -8,9 +8,10 @@ const Search = ({ allProducts, setFilteredProducts }) => {
 
     const handleFilter = (e) => {
         e.preventDefault();
-        let searchText = serachRef.current.value.trim().toLowerCase();
+        let searchText = serachRef.current.value.trim().toLowerCase(); //getting input value
+        // Data filtering
         setFilteredProducts(allProducts.filter(product => product.name.trim().toLowerCase().includes(searchText) || product.category.trim().toLowerCase().includes(searchText)));
-      }
+    }
 
   return (
     <form className='serach-container'>

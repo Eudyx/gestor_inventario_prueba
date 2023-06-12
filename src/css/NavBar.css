@@ -8,7 +8,7 @@ nav {
     background-color: var(--white);
     height: 100vh;
     width: 56px;
-    position: relative;
+    position: fixed;
     float: left;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.11);
 }
@@ -39,6 +39,8 @@ nav {
     display: flex;
     flex-direction: column;
     width: 431px;
+    margin: auto;
+    max-height: 500px;
     min-width: 431px;
     background-color: var(--white);
     gap: 2rem;
@@ -49,8 +51,7 @@ nav {
 .mainContent {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding: 4rem;
 }
 
 .pres-icon {
@@ -296,6 +297,12 @@ textarea {
 }
 
 /* Details */
+
+.details-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .details-container {
     display: flex;

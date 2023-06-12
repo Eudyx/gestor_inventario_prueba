@@ -2,12 +2,13 @@ import React from 'react'
 import axios from '../api/axios';
 
 const DeleteButton = ({ children, productId, deleted, setDeleted }) => {
-
+    
+    // Fetch to delte a product
     const deleteProduct = (e) => {
         e.preventDefault();
         setDeleted(!deleted);
         axios.delete(`/ProductId/?id=${productId}`)
-            .then(res => console.log(res.data))
+            .then(res => res.data)
             .catch(err => {
                 console.error(err);
                 if(!err?.response){

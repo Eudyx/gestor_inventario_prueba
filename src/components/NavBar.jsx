@@ -18,15 +18,26 @@ const NavBar = ({ setHidde }) => {
 
   return (
     <nav>
+      {/* navigate to home */}
       <FontAwesomeIcon className='navIcon' icon={faHouse} onClick={(e) => {
         e.preventDefault();
         handleNavigate('/');
       }} />
+      {/* navigate to home */}
+
+      {/* navigate to products details */}
       <FontAwesomeIcon className='navIcon' icon={faList} onClick={(e) => {
         e.preventDefault();
         handleNavigate('/products');
       }} />
-      {location.pathname === '/products' && <button className='btn btn-create' onClick={(e) => openCreate(e)}><FontAwesomeIcon icon={faPlus} /></button>}
+      {/* navigate to products details */}
+
+      {/* Button to create a new product */}
+      {
+        // detecting the location to show the button only if you are in prodcuts details section
+      location.pathname === '/products' && <button className='btn btn-create' onClick={(e) => openCreate(e)}><FontAwesomeIcon icon={faPlus} /></button>
+      }
+      {/* Button to create a new product */}
     </nav>
   )
 }

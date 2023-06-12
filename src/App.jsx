@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const [hidde, setHidde] = useState(true);
+  const [hidde, setHidde] = useState(true); //to detect if the create and edit form is active
 
   return (
     <main>
