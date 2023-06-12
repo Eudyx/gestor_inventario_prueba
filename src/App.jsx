@@ -1,6 +1,6 @@
 import Presentation from './components/Presentation';
 import './App.css';
-import './css/NavBar.css';
+import './css/styles.css';
 import ProdcustDetails from './components/ProdcustDetails';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
